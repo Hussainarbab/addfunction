@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Button Example</title>
+</head>
+<body>
+    <input type="text" id="inputs" placeholder="Enter something" />
+    <button onclick="add()">Add</button>
+    
+    <div id="show"></div>
+
+    <script>
+        function add() {
+            let inputs = document.getElementById("inputs");
+            let inputValue = inputs.value;
+
+            if (inputValue) {
+                document.getElementById("show").innerHTML = `
+                    <div id="displayText">${inputValue}</div>
+                    <button onclick="edit()">Edit</button>
+                `;
+                inputs.value = ''; 
+            }
+        }
+
+        function edit() {
+            let displayText = document.getElementById("displayText").innerText;
+
+            document.getElementById("show").innerHTML = `
+                <input type="text" id="editInput" value="${displayText}" />
+                <button onclick="save()">Save</button>
+            `;
+        }
+
+        function save() {
+            let editedValue = document.getElementById("editInput").value;
+
+           
+            document.getElementById("show").innerHTML = `
+                <div id="displayText">${editedValue}</div>
+                <button onclick="edit()">Edit</button>
+            `;
+        }
+    </script>
+</body>
+</html>
